@@ -1,11 +1,27 @@
 # Human Simulation Fidelity Evaluation
 
-This project evaluates how faithfully AI-generated answers mimic real human interview responses in a consumer research context. It uses a LangGraph state graph to orchestrate the full evaluation pipeline — from data loading through LLM-as-judge scoring to visualization — demonstrating structured AI workflow orchestration with explicit, inspectable state at every step.
+Evaluation pipeline for assessing how accurately AI-generated human simulations mimic real consumer interview responses. Built as part of a GenAI take-home assignment, the project implements a multi-layer fidelity framework using LangGraph for workflow orchestration, Groq-hosted LLMs for structured evaluation, and sentence embeddings for cross-person identity testing.
+
+## Approach
+
+The pipeline runs three evaluation layers:
+
+- **Pairwise scoring** — each AI answer is scored against its human counterpart across four dimensions: topical alignment, behavioral fidelity, persona fidelity, and style calibration, with a hallucination penalty
+- **Dimension aggregation** — scores are rolled up per person and per question category to surface where simulations break down
+- **Identity match test** — each AI answer is compared against all three humans' answers to the same question; a match is only counted if the AI is closest to its own person (random baseline: 33.3%)
+
+## Stack
+
+- **LangGraph** — state graph orchestration across 7 pipeline nodes
+- **Groq API** (`llama-3.3-70b-versatile`) — LLM-as-judge scoring with structured JSON output
+- **sentence-transformers** (`all-MiniLM-L6-v2`) — semantic similarity and identity match
+- **pandas / seaborn / matplotlib** — aggregation and visualization
 
 ## Setup
 
 ```bash
-git clone <repo-url> && cd rb_genai_eval
+git clone https://github.com/omborda2002/rb_genai_eval.git
+cd rb_genai_eval
 pip install -r requirements.txt
 ```
 
@@ -14,9 +30,7 @@ Create a `.env` file in the project root:
 GROQ_API_KEY=your_key_here
 ```
 
-Place `RB_GenAI_Datatest.xlsx` in the project root.
-
-## Run
+Place `RB_GenAI_Datatest.xlsx` in the project root, then run:
 
 ```bash
 python main.py
@@ -26,24 +40,22 @@ python main.py
 
 | File | Description |
 |---|---|
-| `scores_raw.csv` | All 30 rows with dimension scores, composite, verdict, and reasons |
-| `summary.json` | Aggregate metrics: means, per-person stats, verdict distribution, top failures/successes |
-| `person_cards.json` | Ground-truth persona profiles extracted from real human answers |
+| `scores_raw.csv` | All 30 scored pairs with dimension scores, composite, verdict, and reasoning |
+| `summary.json` | Aggregate metrics: composite means, per-person stats, verdict distribution, top failures and successes |
+| `person_cards.json` | Ground-truth persona profiles extracted from real human answers before scoring |
 | `figures/composite_by_person.png` | Mean composite fidelity score per person |
-| `figures/dimension_heatmap.png` | Heatmap of topical/behavioral/persona/style scores by person |
-| `figures/identity_match_rate.png` | Cross-person distinctiveness test results vs. 33.3% baseline |
-| `figures/verdict_distribution.png` | Faithful / partly faithful / weak verdicts by person |
+| `figures/dimension_heatmap.png` | Scores across topical / behavioral / persona / style by person |
+| `figures/identity_match_rate.png` | Cross-person distinctiveness test vs. 33.3% random baseline |
+| `figures/verdict_distribution.png` | Faithful / partly faithful / weak verdict distribution by person |
 
 ## Pipeline Nodes
 
-1. **load_data** — Loads Excel, validates schema (30 rows, 3 persons)
-2. **build_person_cards** — Builds ground-truth persona profiles from human answers via Groq LLM
-3. **compute_similarity** — Computes cosine similarity between human and AI answer embeddings
-4. **score_pairs** — LLM-as-judge scores each pair on 4 dimensions + hallucination penalty
-5. **identity_match** — Tests whether each AI answer is closest to its own human (vs. other 2)
-6. **aggregate** — Computes summary statistics, saves CSV/JSON outputs
-7. **visualize** — Generates 4 charts
-
-## Model
-
-**llama-3.3-70b-versatile** via Groq API. 276 tokens/second, 86% MMLU, ~$0.01 total cost for 33 API calls. Chosen for reliable structured JSON output with strict rubrics.
+| Node | Role |
+|---|---|
+| `load_data` | Loads and validates the Excel dataset |
+| `build_person_cards` | Extracts structured persona profiles from real human answers only |
+| `compute_similarity` | Computes cosine similarity between human and AI answer embeddings |
+| `score_pairs` | LLM-as-judge scores all 30 pairs on 4 dimensions plus hallucination penalty |
+| `identity_match` | Tests cross-person distinctiveness — does each AI answer sound like its own human? |
+| `aggregate` | Computes summary statistics and saves all outputs |
+| `visualize` | Generates the four result figures |
