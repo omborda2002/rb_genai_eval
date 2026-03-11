@@ -1,0 +1,67 @@
+{
+  "c_human": {
+    "purchase_channels": "online and in stores",
+    "brand_involvement": "low, i don't really know the brands",
+    "decision_drivers": [
+      "price",
+      "convenience",
+      "effectiveness",
+      "habit",
+      "social",
+      "smell"
+    ],
+    "ingredient_awareness": "somewhat, i care about sustainable ingredients",
+    "influence_sources": "friends and instagram",
+    "emotional_tone": "casual",
+    "certainty_level": "medium, i would rebuy a brand if the product is working for me",
+    "key_phrases": [
+      "get the job done",
+      "are affordable",
+      "smell nice",
+      "i don't really know the brands",
+      "since forever"
+    ]
+  },
+  "s_human": {
+    "purchase_channels": "online from YesStyle for face products, and supermarkets or drugstores like DM for body wash",
+    "brand_involvement": "low, as evidenced by 'i do not care much of the brand rather then the product itself'",
+    "decision_drivers": [
+      "ingredients",
+      "convenience",
+      "quality",
+      "texture",
+      "smell"
+    ],
+    "ingredient_awareness": "yes, as evidenced by 'i want to have full transparency on the ingredient list'",
+    "influence_sources": "Instagram and friends",
+    "emotional_tone": "casual",
+    "certainty_level": "medium, as evidenced by 'if i had to pick one, i would go with keira knightley, just because i like her in general :)'",
+    "key_phrases": [
+      "i do not care much",
+      "i want to have full transparency",
+      "i just want it to feel fresh",
+      "i hate that",
+      "smell oud like"
+    ]
+  },
+  "g_human": {
+    "purchase_channels": "full-service supermarket, during grocery shopping",
+    "brand_involvement": "low, i don't have a favorite personal care brand",
+    "decision_drivers": [
+      "convenience",
+      "price",
+      "habit",
+      "design"
+    ],
+    "ingredient_awareness": "no, i don't really pay attention to the ingredients",
+    "influence_sources": "product design, brand recognition, unintentional discovery in supermarkets",
+    "emotional_tone": "casual",
+    "certainty_level": "low, i'm actually not 100%% confident of the branding of my current body lotion",
+    "key_phrases": [
+      "feels the most convenient and time-efficient to me",
+      "i don't really pay attention to the ingredients",
+      "i think i prefer a clean and minimalistic design",
+      "i don't have a favorite personal care brand"
+    ]
+  }
+}

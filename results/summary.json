@@ -1,0 +1,90 @@
+{
+  "overall_composite_mean": 1.3299999999999998,
+  "overall_semantic_similarity_mean": 0.5225018332401912,
+  "per_person_composite": {
+    "c_human": 1.7899999999999998,
+    "g_human": 0.9799999999999999,
+    "s_human": 1.22
+  },
+  "per_category_composite": {
+    "brand loyalty": 2.0833333333333335,
+    "influences": 0.06666666666666672,
+    "product preferences": 1.4333333333333333,
+    "shopping behavior": 1.3277777777777777
+  },
+  "per_person_dimensions": {
+    "c_human": {
+      "topical": 4.1,
+      "behavioral": 2.8,
+      "persona": 3.0,
+      "style": 2.1
+    },
+    "g_human": {
+      "topical": 3.3,
+      "behavioral": 2.3,
+      "persona": 2.1,
+      "style": 1.7
+    },
+    "s_human": {
+      "topical": 4.1,
+      "behavioral": 2.9,
+      "persona": 2.5,
+      "style": 2.0
+    }
+  },
+  "identity_match": {
+    "overall_identity_match_rate": 0.3333333333333333,
+    "per_person": {
+      "c_human": 0.1,
+      "s_human": 0.4,
+      "g_human": 0.5
+    },
+    "random_baseline": 0.333
+  },
+  "verdict_distribution": {
+    "partly_faithful": 17,
+    "weak": 13,
+    "faithful": 0
+  },
+  "hallucination_penalty_mean": 1.4666666666666666,
+  "top_failures": [
+    {
+      "person_id": "c_human",
+      "question": "which personal care products, if any, do you regularly buy in larger/bulk quantities?",
+      "composite": 0.0,
+      "verdict": "weak"
+    },
+    {
+      "person_id": "s_human",
+      "question": "which personal care products, if any, do you regularly buy in larger/bulk quantities?",
+      "composite": 0.0,
+      "verdict": "weak"
+    },
+    {
+      "person_id": "g_human",
+      "question": "which personal care products, if any, do you regularly buy in larger/bulk quantities?",
+      "composite": 0.0,
+      "verdict": "weak"
+    }
+  ],
+  "top_successes": [
+    {
+      "person_id": "s_human",
+      "question": "which personal care brands do you buy most often for skincare (or body wash) products, and why?",
+      "composite": 2.9,
+      "verdict": "partly_faithful"
+    },
+    {
+      "person_id": "c_human",
+      "question": "if you would create the perfect body wash for you, what ingredients would it have? what other features you would prefer?",
+      "composite": 2.9,
+      "verdict": "partly_faithful"
+    },
+    {
+      "person_id": "c_human",
+      "question": "How likely are you to repurchase your preferred personal care brand, and what factors influence your loyalty to that brand?",
+      "composite": 2.9,
+      "verdict": "partly_faithful"
+    }
+  ]
+}
